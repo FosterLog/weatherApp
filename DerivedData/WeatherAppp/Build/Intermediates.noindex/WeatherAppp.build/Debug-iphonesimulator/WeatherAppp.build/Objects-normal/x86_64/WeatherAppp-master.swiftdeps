@@ -1,0 +1,11 @@
+version: "Apple Swift version 4.1.2 (swiftlang-902.0.54 clang-902.0.39.2)"
+options: "29d80f79aac5a0f54b09fe65eea68e8f"
+build_time: [1537246528, 105123000]
+inputs:
+  "/Users/express/Movies/TryTableView/WeatherAppp/WeatherAppp/Main Page/View/WeatherTableViewCell.swift": [1537246477, 0]
+  "/Users/express/Movies/TryTableView/WeatherAppp/WeatherAppp/Search/View/CityTableViewCell.swift": [1537244883, 0]
+  "/Users/express/Movies/TryTableView/WeatherAppp/WeatherAppp/Main Page/Model/Weather.swift": [1537246528, 0]
+  "/Users/express/Movies/TryTableView/WeatherAppp/WeatherAppp/Search/Controller/ViewController.swift": [1537245209, 0]
+  "/Users/express/Movies/TryTableView/WeatherAppp/WeatherAppp/Main Page/Controller/WeatherTableViewController.swift": [1537245428, 0]
+  "/Users/express/Movies/TryTableView/WeatherAppp/WeatherAppp/AppDelegate.swift": [1537062565, 0]
+  "/Users/express/Movies/TryTableView/WeatherAppp/WeatherAppp/Search/Model/CityName.swift": [1537244763, 0]
