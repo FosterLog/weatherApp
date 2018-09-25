@@ -19,8 +19,8 @@ class CityTableViewCell: UITableViewCell {
     
     func findCityId(for cellAt: UITableViewCell,forBase dataBase: [String] ) {
         let cityName = (cellAt.textLabel?.text)!
-        let indexOfCity = dataBase.index(of: cityName)!
-        print("\(indexOfCity)")
-        
+        if let fooOffset = dataBase.index(where: {$0 == cityName}) {
+            cityIds.append("\(searchCityIds[fooOffset])")
+        }
     }
 }

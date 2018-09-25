@@ -10,23 +10,33 @@ import SVProgressHUD
 
 class WeatherTableViewController: UITableViewController {
     
-    var weatherData: [List]?
-    
-    @IBAction func addCityButton(_ sender: Any) {
-        performSegue(withIdentifier: "addCity", sender: sender)
+    @IBAction func unwindToWeatherScreen(segue: UIStoryboardSegue) {
+        print("Main Page")
     }
+    
+    @IBOutlet weak var outletAddCity: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        outletAddCity.isHidden = true
+        outletAddCity.backgroundColor = UIColor.lightGray
         SVProgressHUD.show(withStatus: "We are getting weather data")
-        downloadData()
+        downloadData {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.outletAddCity.isHidden = false
+            }
+        }
     }
     
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let weatherDat = weatherData else { return 0 }
-        return (weatherDat.count)
+        guard let weatherData = weatherData else { return 0 }
+        return (weatherData.count)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -35,23 +45,5 @@ class WeatherTableViewController: UITableViewController {
         SVProgressHUD.dismiss()
         cell.configureCell(at: indexPath.row, for: _weatherData)
         return cell
-    }
-    
-    func downloadData() {
-        let downloadURL = cityIdList()
-        print(downloadURL)
-        URLSession.shared.dataTask(with: downloadURL) { (data, urlResponse, error) in
-            guard let data = data, error == nil, urlResponse != nil else { return }
-            do {
-                let decoder = JSONDecoder()
-                let weather = try decoder.decode(Weather.self, from: data)
-                self.weatherData = weather.list
-            } catch {
-                print("Json error")
-            }
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-            }.resume()
     }
 }

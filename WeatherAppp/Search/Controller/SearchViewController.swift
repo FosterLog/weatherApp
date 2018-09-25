@@ -9,29 +9,15 @@ import UIKit
 
 class SearchViewController: UIViewController {
 
-    var cityNames: [String] = []
-    var cityId: [Double] = []
     var searchCity = [String]()
     var searching = false
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let url = Bundle.main.url(forResource: "cityList", withExtension: "json") {
-            do {
-                let data = try Data(contentsOf: url)
-                let decoder = JSONDecoder()
-                let jsonData = try decoder.decode([CityJson].self, from: data)
-                for i in 0..<jsonData.count {
-                    self.cityNames.append(jsonData[i].name)
-                    self.cityId.append(jsonData[i].id)
-                }
-            } catch {
-                print("Json Error")
-            }
-        }
+        getCityNames()
     }
 }
 
